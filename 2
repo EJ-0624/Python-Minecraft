@@ -49,3 +49,52 @@ while True:
     x,y,z =mc.player.getTilePos() 
     mc.setBlock(x,y,z,8)
     time.sleep(30)
+
+輕功水上漂
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create() 
+x,y,z =mc.player.getTilePos()
+a = mc.getBlock(x,y-1,z+1)
+b = mc.getBlock(x,y-1,z-1)
+c = mc.getBlock(x+1,y-1,z)
+d = mc.getBlock(x-1,y-1,z)
+
+if a == 8 or a == 9 or b == 8 or b == 9 or c == 8 or c == 9 or d == 8 or d == 9:
+    mc.setBlocks(x+1,y-1,z+1,x-1,y-1,z-1,19)
+
+海綿水壩
+a = 0
+while a < 5:
+    mc.setBlocks(x+30,y-1,z,x-30,y-10,z,19)
+    z = z-5
+    a = a+1
+
+聊天機器人
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create() 
+x,y,z =mc.player.getTilePos()
+
+blockType = int(input("請輸入你要的方塊ID:"))
+mc.setBlock(x, y, z, blockType)
+
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create() 
+x,y,z =mc.player.getTilePos()
+try:
+    blockType = int(input("請輸入方塊ID:"))
+    mc.setBlock(x,y,z,blockType)
+except:
+    mc.postToChat("只能輸入數字!!!!!")
+
+生成告示牌
+mc.setSign(x, y, z, 63, 0, "我愛", "Python" , "" , "也愛Minecraft")
+
+情境題
+from mcpi.minecraft import Minecraft
+import time , random
+mc = Minecraft.create()
+x,y,z =mc.player.getTilePos() 
+color = random.randrange(0,16)
+if color == 10:
+    mc.player.setTilePos(x,y,z+1)
+    mc.setSign(x, y, z, 63, 0, "踩到紫色", "請小心" , "" , "向右走1格")
