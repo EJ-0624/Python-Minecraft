@@ -1,0 +1,51 @@
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create()   
+x,y,z =mc.player.getTilePos() 
+
+mc.setBlock(x, y, z, 11)
+
+九宮格
+mc.setBlock(x, y-1, z, x, y-1, z, 11)
+精準玩家
+mc.player.setPos(x+0.5,y,z+0.5)
+mc.setBlock(x,y-1,z,11)
+
+礦物地板 #不要岩漿
+mc.setBlocks(x+25,y-1,z+25,x-25,y-1,z-25,57)
+
+彩色地板(先做隨機，再做while 霓虹燈)
+from mcpi.minecraft import Minecraft
+import time , random
+mc = Minecraft.create()
+x,y,z =mc.player.getTilePos() 
+while True:
+    color = random.randrange(0,16)
+    mc.setBlocks(x+25,y-1,z+25,x-25,y-1,z-25,95,color)
+    time.sleep(0.5)
+
+房子
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create()   
+x,y,z =mc.player.getTilePos() 
+width = 10
+height = 5
+length = 6
+block = 4
+air = 0
+mc.setBlocks(x, y, z, x + width, y+height, z+length, block)
+mc.setBlocks(x +1,y +1,z +1, x + width-1, y + height-1, z + length-1, air)
+
+花花世界
+from mcpi.minecraft import Minecraft
+import time
+mc = Minecraft.create()   
+while True:
+    x,y,z =mc.player.getTilePos() 
+    mc.setBlock(x, y, z, 38)
+    time.sleep(0.2)
+    
+水的詛咒
+while True:
+    x,y,z =mc.player.getTilePos() 
+    mc.setBlock(x,y,z,8)
+    time.sleep(30)
