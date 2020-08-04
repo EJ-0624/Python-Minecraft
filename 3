@@ -65,3 +65,80 @@ for i in range(20):
     time.sleep(1)
     mc.setBlock(x+i+2, y-1, z+i, 1)       
     time.sleep(1)
+
+種樹
+x, y, z = mc.player.getTilePos()
+def plantTree(x, y, z):
+    mc.setBlocks(x-1, y+3, z-1, x+1, y+5, z+1, 161)
+    mc.setBlocks(x, y, z, x, y+4, z, 17)
+plantTree(x,y,z)
+一排樹(試試四種整排樹)
+for i in range(5):
+    plantTree(x+i, y,z)
+    
+間隔五
+法一 (四種)
+for i in range(5):
+    plantTree(x+i*5, y,z)
+法二
+for i in range(0,30,5):
+    plantTree(x+i, y,z)
+
+森林
+for i in range(5):
+    plantTree (x + i*5, y, z+0)
+    plantTree (x + i*5, y, z+1)
+    plantTree (x + i*5, y, z+2)
+    plantTree (x + i*5, y, z+3)
+    plantTree (x + i*5, y, z+4)
+for i in range(5):
+    for j in range(5):
+        plantTree (x + i*5, y, z+j*5)
+
+一片牆
+for i in range(5):
+    plantTree (x + i*5, y+0, z)
+    plantTree (x + i*5, y+1, z)
+    plantTree (x + i*5, y+2, z)
+    plantTree (x + i*5, y+3, z)
+    plantTree (x + i*5, y+4, z)
+for i in range(5):
+    for j in range(5):
+        plantTree (x + i*5, y+j*5, z )
+for i in range(5):
+    for j in range(5):
+        for k in range(5):
+            plantTree (x + i*5, y+j*5, z+k*5 )
+發散效果
+for i in range(5):
+    plantTree(x+i*5, y+i*0,z)
+    plantTree(x+i*5, y+i*1,z)
+    plantTree(x+i*5, y+i*2,z)           
+    plantTree(x+i*5, y+i*3,z)
+    plantTree(x+i*5, y+i*4,z) 
+for i in range(5):
+    for j in range(5):
+        plantTree (x + i*5, y+i*j, z )
+        
+for i in range(5):
+    for j in range(5):
+        for k in range(5):
+            plantTree (x + i*5, y+i*j, z+i*k )
+
+金字塔
+from mcpi.minecraft import Minecraft
+mc = Minecraft.create()
+ 
+x,y,z = mc.player.getTilePos()
+base = 18
+height = (base//2)+1
+ 
+for i in range(height):
+    x1 = x + i
+    y1 = y + i
+    z1 = z + i
+   
+    x2 = x + base - i
+    #y與y2相同
+    z2 = z + base - i
+    mc.setBlocks(x1, y1, z1, x2, y1, z2, 24)
