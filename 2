@@ -98,3 +98,6 @@ color = random.randrange(0,16)
 if color == 10:
     mc.player.setTilePos(x,y,z+1)
     mc.setSign(x, y, z, 63, 0, "踩到紫色", "請小心" , "" , "向右走1格")
+    
+x,y,z =mc.player.getTilePos()
+mc.getBlockWithData(x,y-1,z)
