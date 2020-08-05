@@ -65,6 +65,7 @@ for i in range(20):
     time.sleep(1)
     mc.setBlock(x+i+2, y-1, z+i, 1)       
     time.sleep(1)
+    mc.setBlocks(x+i, y-1, z+i, x+i+3, y-1 , z+i,1)  
 
 種樹
 x, y, z = mc.player.getTilePos()
