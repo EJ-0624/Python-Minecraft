@@ -48,3 +48,132 @@ for i in range(20):
     elif r == 4:
         mc.setBlocks(x, y, z, x, y, z-4, 1)
         z = z-4
+        
+日夜變換
+import time
+time.sleep(1)
+
+while True:
+    mc.executeCommand("time add 50")
+    time.sleep(0.05)
+    
+from time import sleep
+sleep(1)
+while True:
+    mc.executeCommand("time add 50")
+    sleep(0.05)
+    
+變數
+string = "我在外層"
+
+def func():  
+    string2 = "我在內層"
+    print(string2)
+func()
+#print(string2)
+
+法一
+def func():  
+    global string2
+    string2 = "我在內層"
+func()
+print(string2)
+
+法二
+def func():  
+    string2 = "我在內層"
+    return string2
+a= func()
+
+print(a)
+
+隨機方塊
+學生昨日問題
+from mcpi.minecraft import Minecraft
+import random
+mc = Minecraft.create()
+b=0
+a=0
+
+while b<10:
+    x,y,z = mc.player.getTilePos()
+    while a<10:
+        color = random.randrange(0,16)
+        mc.setBlock(x,y-1,z,35,color)
+        a = a+1
+        x = x+1
+        z = z+1
+    b = b+1
+    z = z+1
+        
+from random import randrange
+from time import sleep
+
+#while True:
+for i in range(10):
+    x, y, z = mc.player.getTilePos()
+    x = x + i
+    sleep(1)
+   
+    for j in range(10):
+        r = randrange(0, 16)
+        z = z +1
+        mc.setBlock(x, y, z, 35, r )
+猜方塊
+r = randrange(1, 16)
+while True: 
+    hits = mc.events.pollBlockHits()          
+    if len(hits) > 0:
+        hit = hits[0]    
+        block = mc.getBlockWithData(hit.pos)
+        data = block.data
+        
+        if data == r:
+            mc.postToChat("恭喜你找到我 >///<")
+            mc.setBlock(hit.pos , 57 )
+            break
+        elif data < r:
+            mc.postToChat("找錯囉~! 試試看更大的子ID吧")
+        else:
+            mc.postToChat("找錯囉~! 試試看更小的子ID吧")
+mc.getBlockWithData(hit.pos)  
+
+程式 運行時間
+from time import time , sleep 
+
+startTime = time()
+sleep(5)
+
+print(time()-startTime)   
+
+線性搜尋法
+def LinearSearch():
+    r = randrange(1, 16)
+    sTime = time()
+    for i in range(100000001):
+       if r == i:
+           print("找到答案了!是"+str(i))
+           print("線性搜尋法:花了"+str(time()-sTime) + "秒")
+           break
+
+LinearSearch()
+
+二元搜尋法
+def BinarySearch():
+    r = randrange(1, 16)
+    sTime = time()
+    low = 0
+    upper = 10000000
+    
+    while low <= upper:
+        mid = (low + upper) // 2
+        if mid < r:
+            low = mid +1
+            
+        elif mid > r:
+            upper = mid - 1
+        else:
+            print("找到答案了!是"+str(i))
+            print("二元搜尋法:花了"+str(time()-sTime) + "秒")
+            return
+BinarySearch()
